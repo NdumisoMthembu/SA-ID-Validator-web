@@ -45,10 +45,11 @@ export class ValidateIdFormComponent implements OnInit {
   }
   proccessdata() {
     for (let i = 0; i < this.files.length; i++) {
-      if (this.files[0].size > 5 * 1024 * 1024) {
+      if (this.files[i].size > 5 * 1024 * 1024) {
+        
         this.modalService.updateModalState({
           show: true,
-          errors: ["The total upload file size should not exceed 5MB."]
+          errors: [`Opps [${this.files[i].name}] could not be proccessed. The total upload file size should not exceed 5MB.`]
         });
       } else {
         this.parseFile(this.files[i]);
