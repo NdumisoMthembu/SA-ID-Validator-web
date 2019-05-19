@@ -11,7 +11,10 @@
   </div>
 
   <div class="cards" *ngIf="valdaions$| async as valdaions; else nodata">
-    <div class="list" *ngFor="let data of valdaions  | filter: searchText">
+    <div *ngIf="valdaions.length>0; else nodata" class="">
+
+    </div>
+    <div class="list"  *ngFor="let data of valdaions  | filter: searchText">
       <div class="card" *ngIf="data.Status == 'valid'">
         <div class="status">
         </div>
