@@ -4,6 +4,9 @@ $status-size: 1.5rem;
 }
 .cards {
   margin: 2% 0;
+  max-height: 45vh;
+  overflow-y: scroll;
+
   .card {
     border: 1px solid #464a55;
     background: none;
@@ -23,7 +26,7 @@ $status-size: 1.5rem;
       }
       .label {
         display: block;
-        color: #808CAC;
+        color: #808cac;
       }
     }
 
@@ -34,15 +37,14 @@ $status-size: 1.5rem;
       border-radius: $status-size;
       background: #2ecc71;
     }
-    .invalid{
-      background: #E74C3C;
-
+    .invalid {
+      background: #e74c3c;
     }
   }
   .card-invalid {
     grid-template-columns: 5% 25% 50% 10%;
-    .count{
-      color: #E74C3C;
+    .count {
+      color: #e74c3c;
     }
     .more {
       background: #2ecc71;
@@ -52,15 +54,12 @@ $status-size: 1.5rem;
       font-size: 1.2rem;
       cursor: pointer;
 
-      &:hover{
-      background: #169c4e;
-
+      &:hover {
+        background: #169c4e;
       }
-
     }
-
   }
 }
-.nodata{
-    color: #E74C3C;
+.nodata {
+  color: #e74c3c;
 }

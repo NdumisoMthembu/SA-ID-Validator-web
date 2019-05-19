@@ -12,10 +12,14 @@ export class ValidateResultsComponent implements OnInit {
   reasons: string[] = [];
   searchText=1; //show all
   constructor(private validateService: ValidateService) {
-    this.valdaions$ = this.validateService.getValidations();
+   this.validateService.getValidations().subscribe(r=>{
+     this.validateService.updateValidationState(r)
+   })
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.valdaions$  = this.validateService.castValidations;
+  }
   moreReasons(data: string[]) {
     this.reasons = data;
   }

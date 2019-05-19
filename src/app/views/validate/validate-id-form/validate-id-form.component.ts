@@ -1,3 +1,4 @@
+import { ValidateService } from "./../../../services/validate.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 
@@ -8,8 +9,13 @@ import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 })
 export class ValidateIdFormComponent implements OnInit {
   rForm: FormGroup;
-  files: any[];
-  constructor(private fb: FormBuilder) {}
+  files: FileList[]=[];
+  dataFromFiles:String[]=[];
+  constructor(
+    private fb: FormBuilder,
+    private validateService: ValidateService
+  ) {
+  }
   ngOnInit() {
     this.rForm = this.fb.group({
       files: null,
@@ -19,6 +25,9 @@ export class ValidateIdFormComponent implements OnInit {
     this.rForm.valueChanges.subscribe(data => {
       console.log(data);
     });
+  }
+  get formValues() {
+    return this.rForm.controls;
   }
 
   get formIds() {
@@ -33,19 +42,37 @@ export class ValidateIdFormComponent implements OnInit {
   deleteId(i) {
     this.formIds.removeAt(i);
   }
-  proccessdata(data) {
-    console.log(data);
+  proccessdata() {
+    for (let i = 0; i < this.files.length; i++) {
+      this.parseFile(this.files[i]);
+    }
+
+    //data from the form
+    let formData = this.formValues.idNumbers.value;
+    formData.map(x => this.pushToFilesData(x.IdNumber));
+    if (this.dataFromFiles.length == 0) return false;
+
+    console.log("file data", this.dataFromFiles);
+    this.validateService.sendForValidations(this.dataFromFiles).subscribe(response => {
+      console.log(response);
+      this.validateService.updateValidationState(response)
+    });
   }
   onFileSelect(event) {
     this.files = event.target.files;
-    console.log(this.files);
-    this.uploadDocument()
   }
-  uploadDocument() {
+  parseFile(file) {
     let fileReader = new FileReader();
-    fileReader.onload = (e) => {
-      console.log(fileReader.result);
-    }
-    fileReader.readAsText(this.files[0]);
-}
+    fileReader.onload = () => {
+      let lines = (fileReader.result as string).split("\n");
+      console.log("lines", lines);
+      lines.map(r => this.pushToFilesData(r));
+    };
+    fileReader.readAsText(file);
+  }
+  pushToFilesData(data) {
+    if (this.dataFromFiles.filter(x => x == data).length > 0 || data == "")
+      return false;
+    this.dataFromFiles.push(data);
+  }
 }
