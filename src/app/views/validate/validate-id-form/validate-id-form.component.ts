@@ -45,7 +45,6 @@ export class ValidateIdFormComponent implements OnInit {
   }
   proccessdata() {
     for (let i = 0; i < this.files.length; i++) {
-      debugger;
       if (this.files[0].size > 5 * 1024 * 1024) {
         this.modalService.updateModalState({
           show: true,
