@@ -28,3 +28,17 @@
   </div>
 </div>
 
+
+<div class="overlay" *ngIf="modalError.show">
+    <div class="reasons modal">
+      <div class="header">
+        <a (click)="closeModal()"><i class="far fa-times-circle"></i></a>
+      </div>
+      <ul>
+        <li *ngFor="let data of modalError.errors">
+          {{data}}
+        </li>
+      </ul>
+    </div>
+  </div>
+

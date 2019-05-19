@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
 import { API_URL } from "../shared/config";
-import { IdNumberDetails } from '../models/idnumber.details.model';
+import { IdNumberDetails } from '../models';
 
 @Injectable({
   providedIn: "root"

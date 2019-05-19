@@ -1,3 +1,4 @@
+import { ModalService } from './../../../services/modal.service';
 import { Component, OnInit } from "@angular/core";
 import { ValidateService } from "src/app/services/validate.service";
 import { Observable } from "rxjs";
@@ -11,7 +12,7 @@ export class ValidateResultsComponent implements OnInit {
   valdaions$: Observable<any[]>;
   reasons: string[] = [];
   searchText=1; //show all
-  constructor(private validateService: ValidateService) {
+  constructor(private validateService: ValidateService, private modalService:ModalService) {
    this.validateService.getValidations().subscribe(r=>{
      this.validateService.updateValidationState(r)
    })
@@ -21,6 +22,6 @@ export class ValidateResultsComponent implements OnInit {
     this.valdaions$  = this.validateService.castValidations;
   }
   moreReasons(data: string[]) {
-    this.reasons = data;
+    this.modalService.updateModalState({show:true, errors:data})
   }
 }
