@@ -1,3 +1,4 @@
+import { ModalService } from "./../../../services/modal.service";
 import { ValidateService } from "./../../../services/validate.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
@@ -9,13 +10,13 @@ import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 })
 export class ValidateIdFormComponent implements OnInit {
   rForm: FormGroup;
-  files: FileList[]=[];
-  dataFromFiles:String[]=[];
+  files: any[] = [];
+  dataFromFiles: String[] = [];
   constructor(
     private fb: FormBuilder,
-    private validateService: ValidateService
-  ) {
-  }
+    private validateService: ValidateService,
+    private modalService: ModalService
+  ) {}
   ngOnInit() {
     this.rForm = this.fb.group({
       files: null,
@@ -44,7 +45,15 @@ export class ValidateIdFormComponent implements OnInit {
   }
   proccessdata() {
     for (let i = 0; i < this.files.length; i++) {
-      this.parseFile(this.files[i]);
+      debugger;
+      if (this.files[0].size > 5 * 1024 * 1024) {
+        this.modalService.updateModalState({
+          show: true,
+          errors: ["The total upload file size should not exceed 5MB."]
+        });
+      } else {
+        this.parseFile(this.files[i]);
+      }
     }
 
     //data from the form
@@ -53,10 +62,12 @@ export class ValidateIdFormComponent implements OnInit {
     if (this.dataFromFiles.length == 0) return false;
 
     console.log("file data", this.dataFromFiles);
-    this.validateService.sendForValidations(this.dataFromFiles).subscribe(response => {
-      console.log(response);
-      this.validateService.updateValidationState(response)
-    });
+    this.validateService
+      .sendForValidations(this.dataFromFiles)
+      .subscribe(response => {
+        console.log(response);
+        this.validateService.updateValidationState(response);
+      });
   }
   onFileSelect(event) {
     this.files = event.target.files;
