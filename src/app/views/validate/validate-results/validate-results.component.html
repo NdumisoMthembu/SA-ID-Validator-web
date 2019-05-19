@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="form">
+    <div class="controls">
+      <label class="label">Filter</label>
+      <select class="input" [(ngModel)]="searchText">
+        <option value="1">All</option>
+        <option value="2">Valid</option>
+        <option value="3">Invalid</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="cards" *ngIf="valdaions$| async as valdaions; else nodata">
+    <div class="list" *ngFor="let data of valdaions  | filter: searchText">
+      <div class="card" *ngIf="data.Status == 'valid'">
+        <div class="status">
+        </div>
+
+        <div>
+          <span class="value">{{data?.IdentityNumber}}</span>
+          <span class="label">ID NUMBER</span>
+        </div>
+        <div>
+          <span class="value">{{data?.BirthDate}}</span>
+          <span class="label">BIRTTHDAY</span>
+        </div>
+
+        <div>
+          <span class="value">{{data?.Citizenship}}</span>
+          <span class="label">CITIZENSHIP</span>
+        </div>
+        <div>
+          <span class="value">{{data?.Gender}}</span>
+          <span class="label">GENDER</span>
+        </div>
+
+      </div>
+      <div class="card card-invalid" *ngIf="data.Status == 'Invalid'">
+        <div class="status invalid">
+        </div>
+
+        <div>
+          <span class="value">{{data?.IdentityNumber}}</span>
+          <span class="label">ID NUMBER</span>
+        </div>
+
+
+        <div>
+          <span class="value">{{data?.Reasons[0]}}</span>
+          <span class="label">REASONS <span class="count">{{data.Reasons.length}}</span> </span>
+        </div>
+        <div>
+          <button class="more" (click)="moreReasons(data.Reasons)">More</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #nodata>
+    <div class="nodata">
+      <h2>
+        No result to display
+      </h2>
+    </div>
+  </ng-template>
+</div>
+
+<div class="overlay">
+  <div class="reasons">
+    <ul>
+      <li *ngFor="let data of reasons">
+        {{data}}
+      </li>
+    </ul>
+  </div>
+</div>

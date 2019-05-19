@@ -1,0 +1,66 @@
+$status-size: 1.5rem;
+.controls {
+  width: 20%;
+}
+.cards {
+  margin: 2% 0;
+  .card {
+    border: 1px solid #464a55;
+    background: none;
+    border-radius: 0.5rem;
+    padding: 3%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 5% 25% 25% 25% 10%;
+    grid-gap: 0.2rem;
+    width: 80%;
+    margin: 1% 0;
+
+    div {
+      .value {
+        display: block;
+        font-weight: 400;
+      }
+      .label {
+        display: block;
+        color: #808CAC;
+      }
+    }
+
+    .status {
+      display: block;
+      width: $status-size;
+      height: $status-size;
+      border-radius: $status-size;
+      background: #2ecc71;
+    }
+    .invalid{
+      background: #E74C3C;
+
+    }
+  }
+  .card-invalid {
+    grid-template-columns: 5% 25% 50% 10%;
+    .count{
+      color: #E74C3C;
+    }
+    .more {
+      background: #2ecc71;
+      color: #fff;
+      border: none;
+      padding: 1%;
+      font-size: 1.2rem;
+      cursor: pointer;
+
+      &:hover{
+      background: #169c4e;
+
+      }
+
+    }
+
+  }
+}
+.nodata{
+    color: #E74C3C;
+}

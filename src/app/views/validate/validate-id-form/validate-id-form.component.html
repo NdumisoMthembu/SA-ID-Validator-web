@@ -1,0 +1,35 @@
+<form [formGroup]="rForm" (ngSubmit)="proccessdata(rForm.value)" class="form">
+
+
+  <div formArrayName="idNumbers" class="ids-list">
+    <div *ngFor="let idNum of formIds.controls; let i=index" [formGroupName]="i">
+      <div class="col-1-of-3">
+
+        <div class="controls">
+          <label class="label" for="">Id Number</label> <br />
+          <div class="form-froup">
+            <input type="text" class="input" formControlName="IdNumber" />
+            <button class="btn danger" type="button" (click)="deleteId(i)"><i class="far fa-trash-alt"></i></button>
+          </div>
+        </div>
+        <div class="controls btn-remove">
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="controls">
+    <h2>
+      File Uplaod
+    </h2>
+
+  </div>
+  <div class="full-btn">
+    <button class="btn btn-add" type="button" (click)="addNewId()">Add More</button>
+  </div>
+
+  <div class="controls">
+      <input type='file'  class="buttonfile" (change)="onFileSelect($event)" multiple>
+    <input type="submit" value="Validate Now" class="button" [disabled]="!rForm.valid" />
+  </div>
+</form>

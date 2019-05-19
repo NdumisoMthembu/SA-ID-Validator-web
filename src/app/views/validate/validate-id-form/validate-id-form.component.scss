@@ -1,0 +1,49 @@
+.ids-list {
+  // background: red;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+.button {
+  background: #2ecc71;
+  width: auto;
+  border: none;
+  padding: 2%;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  &:hover {
+    background: rgb(32, 158, 84);
+  }
+}
+.buttonfile {
+  background: #3498DB;
+  width: auto;
+  border: none;
+  padding: 2%;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  margin: 0 2rem;
+  cursor: pointer;
+  &:hover {
+    background:rgb(30, 116, 173);
+  }
+}
+
+.full-btn {
+  //   background: rgb(212, 122, 122);
+  text-align: left;
+  margin: 0.5rem 0rem;
+  padding-left: 1%;
+  padding-bottom: 3%;
+  .btn-add {
+    width: 20%;
+    padding: 2%;
+    border-bottom: 2px solid #2ecc71;
+    color: #2ecc71;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,41 @@
+
+*{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+body{
+    background: #292C35;
+    padding: 4%;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+
+
+//scroller bar modification
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background:rgb(48, 51, 59);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #292C35;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #292C35;
+  }
+  

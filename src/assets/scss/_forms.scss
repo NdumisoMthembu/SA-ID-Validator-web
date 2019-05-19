@@ -1,0 +1,42 @@
+.form {
+  .input {
+    background: #555965;
+    border-radius: 0.2rem;
+    border: none;
+    padding: 2%;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+    letter-spacing: .3rem;
+  }
+  .btn{
+      background: none;
+      color: #fff;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+  }
+  .danger{
+    color: #E74C3C;
+    font-size: 2rem;
+    &:hover{
+    color: rgb(223, 46, 26);
+
+    }    
+}
+  .controls {
+    .label {
+      padding: 2%;
+      color: #808cac;
+    }
+    .form-froup {
+      display: grid;
+      grid-template-columns: 80% auto;
+      padding: 3%;
+      grid-gap: 1rem;
+      padding-top: .5%;
+    }
+  }
+
+}
+
+
