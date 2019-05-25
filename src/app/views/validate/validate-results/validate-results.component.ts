@@ -24,4 +24,9 @@ export class ValidateResultsComponent implements OnInit {
   moreReasons(data: string[]) {
     this.modalService.updateModalState({show:true, errors:data})
   }
+  reload(){
+    this.validateService.getValidations().subscribe(r=>{
+      this.validateService.updateValidationState(r)
+    })
+  }
 }

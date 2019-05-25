@@ -55,6 +55,19 @@ body{
   }
 }
 
+.btn-info {
+  background: #296dd4;
+  color: #fff;
+  border: none;
+  padding: 1%;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #296dd49a;
+  }
+}
+
 
 //scroller bar modification
 /* width */
