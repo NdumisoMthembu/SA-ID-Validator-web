@@ -14,7 +14,7 @@
     <div *ngIf="valdaions.length>0; else nodata" class="">
 
     </div>
-    <div class="list"  *ngFor="let data of valdaions  | filter: searchText">
+    <div class="list" *ngFor="let data of valdaions  | filter: searchText">
       <div class="card" *ngIf="data.Status == 'valid'">
         <div class="status">
         </div>
@@ -65,10 +65,12 @@
     <div class="nodata">
       <h2>
         No result to display
+        <span>
+          Please make sure that <br> the API is running <br> and try again <br> / If the api is running, add some data and click validate
+        </span>
       </h2>
       <button class="btn-info" (click)="reload()">Try again</button>
 
     </div>
   </ng-template>
 </div>
-
