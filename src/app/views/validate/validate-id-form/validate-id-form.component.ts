@@ -60,12 +60,10 @@ export class ValidateIdFormComponent implements OnInit {
     let formData = this.formValues.idNumbers.value;
     formData.map(x => this.pushToFilesData(x.IdNumber));
     if (this.dataFromFiles.length == 0) return false;
-
-    console.log("file data", this.dataFromFiles);
     this.validateService
       .sendForValidations(this.dataFromFiles)
       .subscribe(response => {
-        console.log(response);
+        this.dataFromFiles = [];
         this.validateService.updateValidationState(response);
       });
   }
